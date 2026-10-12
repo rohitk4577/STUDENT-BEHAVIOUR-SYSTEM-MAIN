@@ -1,0 +1,45 @@
+/* ClassSight single-page app styles (used by INDEX.HTML).
+   Layout and colours come from Tailwind utility classes; this file only
+   holds what Tailwind can't express inline: animations, focus rings, scrollbars. */
+
+@keyframes scan-glow {
+  0% { top: 0%; opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { top: 100%; opacity: 0.8; }
+}
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #6366f1, #22c55e, #3b82f6, transparent);
+  box-shadow: 0 0 15px #6366f1, 0 0 5px #22c55e;
+  animation: scan-glow 2.2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+.pulse-hud { animation: pulse-ring 2s infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-line, .pulse-hud, .animate-pulse, .animate-ping { animation: none !important; }
+}
+
+button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
+/* Video and overlay canvas share the same object-fit so drawn boxes line up
+   with the picture. */
+#webcam-stream, #vision-canvas { object-fit: cover; }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }

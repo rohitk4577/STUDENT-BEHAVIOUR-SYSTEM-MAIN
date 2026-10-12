@@ -1,0 +1,10 @@
+# ClassSight backend - only what the API needs.
+# (The AI models run in the browser, so no OpenCV / PyTorch here.)
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30
+sqlalchemy>=2.0.36,<2.1
+pydantic>=2.9,<3
+
+# For running the tests (optional)
+pytest>=8
+httpx>=0.27
